@@ -3,18 +3,18 @@
 CSC10014 — Smart Virtual Assistant, HCMUS.
 
 Names, student IDs, and GitHub usernames were supplied by the team.
-Nguyễn Bá Duy is the project manager. The roles below organize the seven
-skeleton tasks, with Phạm Khánh Tâm responsible for documentation.
+Nguyen Ba Duy is the project manager. The roles below organize the seven
+skeleton tasks, with Pham Khanh Tam responsible for documentation.
 
 | No | Full Name | Student ID | GitHub Username | Role |
 |:---|:---|:---|:---|:---|
-| 1 | Nguyễn Bá Duy | 25127040 | [@johannguyen015](https://github.com/johannguyen015) | Project Manager / Config |
-| 2 | Trương Thành Đạt | 25127035 | [@Thanhdat3010](https://github.com/Thanhdat3010) | Backend Engineer |
-| 3 | Nguyễn Nhật Quỳnh | 25127131 | [@nhatquynh1107](https://github.com/nhatquynh1107) | DevOps / Tooling |
-| 4 | Hà Trần Bội Anh | 25127013 | [@htbaax](https://github.com/htbaax) | Data Specialist |
-| 5 | Nguyễn Đình Hùng | 25127194 | [@benalexx007](https://github.com/benalexx007) | QA / Test Engineer |
-| 6 | Dương Trung Anh | 25127012 | [@philip-trkk](https://github.com/philip-trkk) | UI/UX Designer |
-| 7 | Phạm Khánh Tâm | 25127135 | [@AI-WFox](https://github.com/AI-WFox) | Documentation Lead |
+| 1 | Nguyen Ba Duy | 25127040 | [@johannguyen015](https://github.com/johannguyen015) | Project Manager / Config |
+| 2 | Truong Thanh Dat | 25127035 | [@Thanhdat3010](https://github.com/Thanhdat3010) | Backend Engineer |
+| 3 | Nguyen Nhat Quynh | 25127131 | [@nhatquynh1107](https://github.com/nhatquynh1107) | DevOps / Tooling |
+| 4 | Ha Tran Boi Anh | 25127013 | [@htbaax](https://github.com/htbaax) | Data Specialist |
+| 5 | Nguyen Dinh Hung | 25127194 | [@benalexx007](https://github.com/benalexx007) | QA / Test Engineer |
+| 6 | Duong Trung Anh | 25127012 | [@philip-trkk](https://github.com/philip-trkk) | UI/UX Designer |
+| 7 | Pham Khanh Tam | 25127135 | [@AI-WFox](https://github.com/AI-WFox) | Documentation Lead |
 
 ## Branches and ownership
 
