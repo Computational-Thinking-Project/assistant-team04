@@ -2,24 +2,23 @@
 
 CSC10014 — Smart Virtual Assistant, HCMUS.
 
-Names, student IDs, and GitHub usernames were supplied by the team. Roster
-numbers 1–6 follow the order of the supplied list; their task assignments still
-need confirmation. Member 7's documentation assignment is confirmed.
+Names, student IDs, and GitHub usernames were supplied by the team.
+Nguyễn Bá Duy is the project manager. The roles below organize the seven
+skeleton tasks, with Phạm Khánh Tâm responsible for documentation.
 
 | No | Full Name | Student ID | GitHub Username | Role |
 |:---|:---|:---|:---|:---|
-| 1 | Trương Thành Đạt | 25127035 | [@Thanhdat3010](https://github.com/Thanhdat3010) | Pending confirmation |
-| 2 | Nguyễn Nhật Quỳnh | 25127131 | [@nhatquynh1107](https://github.com/nhatquynh1107) | Pending confirmation |
-| 3 | Hà Trần Bội Anh | 25127013 | [@htbaax](https://github.com/htbaax) | Pending confirmation |
-| 4 | Nguyễn Đình Hùng | 25127194 | [@benalexx007](https://github.com/benalexx007) | Pending confirmation |
-| 5 | Nguyễn Bá Duy | 25127040 | [@johannguyen015](https://github.com/johannguyen015) | Pending confirmation |
-| 6 | Dương Trung Anh | 25127012 | [@philip-trkk](https://github.com/philip-trkk) | Pending confirmation |
+| 1 | Nguyễn Bá Duy | 25127040 | [@johannguyen015](https://github.com/johannguyen015) | Project Manager / Config |
+| 2 | Trương Thành Đạt | 25127035 | [@Thanhdat3010](https://github.com/Thanhdat3010) | Backend Engineer |
+| 3 | Nguyễn Nhật Quỳnh | 25127131 | [@nhatquynh1107](https://github.com/nhatquynh1107) | DevOps / Tooling |
+| 4 | Hà Trần Bội Anh | 25127013 | [@htbaax](https://github.com/htbaax) | Data Specialist |
+| 5 | Nguyễn Đình Hùng | 25127194 | [@benalexx007](https://github.com/benalexx007) | QA / Test Engineer |
+| 6 | Dương Trung Anh | 25127012 | [@philip-trkk](https://github.com/philip-trkk) | UI/UX Designer |
 | 7 | Phạm Khánh Tâm | 25127135 | [@AI-WFox](https://github.com/AI-WFox) | Documentation Lead |
 
 ## Branches and ownership
 
-The assignment numbers below come from the seven-task plan. They do not imply
-that roster entries 1–6 have been assigned the matching task number yet.
+Member numbers match the roster above and the seven-task skeleton plan.
 
 | Member | Branch | Assigned files |
 |:---|:---|:---|
