@@ -36,7 +36,7 @@ check(".gitignore present", (root / ".gitignore").exists(), "Lab 1 step 5")
 readme = (root / "README.md").read_text(encoding="utf-8") if (root / "README.md").exists() else ""
 check("README has no TODO left", "TODO" not in readme, "Lab 1 step 5: write the setup instructions")
 if shutil.which("git") and (root / ".git").exists():
-    email = subprocess.run(["git", "config", "user.email"], capture_output=True, text=True, cwd=root).stdout.strip()
+    email = subprocess.run(["git", "config", "user.email"], capture_output=True, text=True, cwd=root, check=False).stdout.strip()
     check(f"git user.email set ({email or 'missing'})", bool(email), "git config --global user.email ...")
 sys.path.insert(0, str(root / "src"))
 try:
