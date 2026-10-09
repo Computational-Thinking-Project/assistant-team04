@@ -1,4 +1,6 @@
 def transpose(matrix: list[list[int]]) -> list[list[int]]:
+    " Unlike C++, Python uses dynamic lists instead of explicitly typed vector<vector<int>> "
+
     if not matrix:
         return []
 

@@ -6,8 +6,7 @@ def missing(credits: int, gpa: float) -> list[str]:
 
     if credits < 120:
         missingCredits = 120 - credits
-        missingRequirements.append("need " + str(missingCredits) + " more credits")
-
+        missingRequirements.append(f"need {missingCredits} more credits")
     if gpa < 2.0:
         missingRequirements.append("need at least GPA 2.0")
 
