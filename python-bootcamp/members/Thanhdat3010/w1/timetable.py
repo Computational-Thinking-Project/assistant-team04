@@ -7,7 +7,7 @@ def by_day(entries: list[tuple[str, str]]) -> dict[str, list[str]]:
     for course, day in entries:
         schedule.setdefault(day, []).append(course)
 
-    for day in schedule:
-        schedule[day].sort()
+    for courses in schedule.values():
+        courses.sort()
 
     return schedule
