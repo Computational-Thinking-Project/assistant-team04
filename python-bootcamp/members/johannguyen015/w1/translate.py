@@ -3,6 +3,7 @@ convert C++ to Python
 
 vector <bool> sieve(int n) {
     vector <bool> isPrime(n + 1, true);
+    vector <int> primes;
     if (n < 2) return {};
     isPrime[0] = isPrime[1] = false;
     for (int i = 2; i * i <= n; ++i) {
@@ -12,12 +13,15 @@ vector <bool> sieve(int n) {
             }
         }
     }
-    return isPrime;
+    for (int i = 2; i <= n; ++i){
+        if (isPrime[i]) primes.push_back(i);
+    }
+    return primes;
 }
 """
 
 #Python
-def sieve(n: int) -> list[bool]:
+def primes_up_to(n: int) -> list[int]:
     if n < 2:
         return []
     
@@ -29,7 +33,7 @@ def sieve(n: int) -> list[bool]:
             for j in range(i * i, n + 1, i):
                 is_prime[j] = False
 
-    return is_prime
+    return [i for i in range(2, n + 1) if is_prime[i]]
 
 """
 Difference from C++:
