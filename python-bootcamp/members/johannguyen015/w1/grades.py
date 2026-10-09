@@ -14,7 +14,6 @@ def summary(scores: list[float]) -> dict:
     median_score = round(median_score, 2)
 
     return {
-        "count": n,
         "min": sorted_scores[0],
         "max": sorted_scores[-1],
         "mean": round(sum(scores) / n, 2),
