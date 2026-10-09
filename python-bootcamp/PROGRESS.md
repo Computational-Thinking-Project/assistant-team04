@@ -6,7 +6,7 @@ Tracking table for 3-week Python homework. Update your row each week after submi
 |---|---|---|---|---|---|---|
 | philip_trkk | w1 | # | # | github_name | -/- | 0 |
 | htbaax | w1 | # | # | github_name | -/- | 0 |
-| Thanhdat3010 | w1 | # | # | github_name | -/- | 0 |
+| Thanhdat3010 | w1 | #19 | #9 | @philip-kkk | 5/5 | 4 |
 | johannguyen015 | w1 | # | # | github_name | -/- | 0 |
 | nhatquynh1107 | w1 | # | # | github_name | -/- | 0 |
 | AI_WFox | w1 | # | # | github_name | -/- | 0 |
