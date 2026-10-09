@@ -8,4 +8,8 @@ def selection_sort(arr: list[int]) -> list[int]:
                 min_idx = j
         if min_idx != i:
             arr[i], arr[min_idx] = arr[min_idx], arr[i]
+    """With this algorithm, one difference between Python and C++ verison is that Python relies
+    on tuple packing/unpacking to swap elements (arr[i], arr[min_idx] = arr[min_idx], arr[i]) 
+    without an explicit temporary variable, whereas C++ conventionally uses std::swap which 
+    relies on move semantics (or a temporary variable)"""
     return arr
