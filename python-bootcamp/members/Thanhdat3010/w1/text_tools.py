@@ -3,7 +3,7 @@ def word_count(text: str) -> dict[str, int]:
     Count word frequencies in text.
     Words are converted to lower-case and punctuation (.,!?;:) is ignored.
     """
-    cleaned_chars = [ch for ch in text if ch not in ".,!?;:"]
+    cleaned_chars = [ch if ch not in ".,!?;:" else " " for ch in text]
     cleaned_text = "".join(cleaned_chars).lower()
     words = cleaned_text.split()
 
