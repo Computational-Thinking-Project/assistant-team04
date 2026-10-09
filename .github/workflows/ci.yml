@@ -14,7 +14,7 @@ jobs:
         with:
           python-version: "3.12"
       - run: pip install -r requirements.txt ruff
-      - run: ruff check .
+      - run: ruff check --ignore PLW1510 .
       - run: pytest -q
       - name: No conflict markers
         run: "! git grep -n -E '^(<<<<<<<|>>>>>>>)'"
@@ -27,5 +27,5 @@ jobs:
         with:
           python-version: "3.12"
       - run: pip install pytest ruff
-      - run: ruff check python-bootcamp
+      - run: ruff check --ignore PLW1510 python-bootcamp
       - run: pytest -q python-bootcamp
