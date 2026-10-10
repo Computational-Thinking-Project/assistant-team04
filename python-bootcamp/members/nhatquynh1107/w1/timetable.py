@@ -5,6 +5,6 @@ def by_day(entries: list[tuple[str, str]]) -> dict[str, list[str]]:
         byDay.setdefault(day, []).append(course)
 
     for courses in byDay.values():
-    courses.sort()
+        courses.sort()
 
     return byDay
