@@ -30,8 +30,7 @@ def top_k(text: str, k: int) -> list[tuple[str, int]]:
             if result[i][1] < result[j][1]:
                 result[i], result[j] = result[j], result[i]
 
-            elif result[i][1] == result[j][1]:
-                if result[i][0] > result[j][0]:
-                    result[i], result[j] = result[j], result[i]
+            elif result[i][1] == result[j][1] and result[i][0] > result[j][0]:
+                result[i], result[j] = result[j], result[i]
 
     return result[:k]

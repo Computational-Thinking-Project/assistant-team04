@@ -1,6 +1,6 @@
 
 def insertion_sort(a: list[int]) -> list[int]:
-    # Sort the list in place; Python lists can be modified directly
+    """Sort the list in place; Python lists can be modified directly."""
     for i in range(1, len(a)):
         key = a[i]
         j = i - 1
