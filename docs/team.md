@@ -9,7 +9,7 @@ The roster is sorted by student ID in ascending order.
 
 | No | Full Name | Student ID | GitHub Username | Role |
 |:---|:---|:---|:---|:---|
-| 1 | Duong Trung Anh | 25127012 | [@philip-trkk](https://github.com/philip-trkk) | QA / Test Engineer |
+| 1 | Duong Trung Anh | 25127012 | [@philip-kkk](https://github.com/philip-kkk) | QA / Test Engineer |
 | 2 | Ha Tran Boi Anh | 25127013 | [@htbaax](https://github.com/htbaax) | DevOps / Tooling |
 | 3 | Truong Thanh Dat | 25127035 | [@Thanhdat3010](https://github.com/Thanhdat3010) | UI/UX Designer |
 | 4 | Nguyen Ba Duy | 25127040 | [@johannguyen015](https://github.com/johannguyen015) | Project Manager / Config |
