@@ -3,7 +3,7 @@ def word_count(text: str) -> dict[str, int]:
     text = text.lower()
 
     for char in ".,!?;:)":
-        text = text.replace(char, "")
+        text = text.replace(char, " ")
 
     words = text.split()
     result = {}
@@ -33,4 +33,3 @@ def top_k(text: str, k: int) -> list[tuple[str, int]]:
             ):
                 result[i], result[j] = result[j], result[i]
     return result[:k]
-
