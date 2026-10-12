@@ -8,6 +8,13 @@ DATA_DIR = Path(__file__).resolve().parents[2] / "data"
 
 GREETINGS = {"hi", "hello", "hey", "xin chao", "chao"}
 
+HELP_MESSAGE = (
+    "I can help you with:\n"
+    "- Greeting: Say hello\n"
+    "- Office lookup: Ask for office location or opening hours\n"
+    "- Help: Type 'help' to see supported commands \n"
+    "- Exit: Type 'quit' or 'exit' to leave"
+)
 
 def load_offices(path: Path = DATA_DIR / "offices.csv") -> dict[str, dict[str, str]]:
     """Return {office_name_lower: row} from the offices CSV."""
@@ -22,6 +29,8 @@ def reply(message: str, offices: dict[str, dict[str, str]] | None = None) -> str
         return "Please type a question."
     if text in GREETINGS:
         return "Hello! Ask me where an office is, or when it opens."
+    if text == "help":
+        return HELP_MESSAGE
     offices = offices if offices is not None else load_offices()
     for name, row in offices.items():
         if name in text:
