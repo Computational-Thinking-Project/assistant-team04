@@ -74,6 +74,7 @@ Ask a single question:
 
 ```sh
 python -m assistant "hi"
+python -m assistant "help"
 python -m assistant "Where is the Training Office?"
 ```
 
