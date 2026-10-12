@@ -18,6 +18,14 @@ def test_empty():
     assert reply("   ") == "Please type a question."
 
 
+def test_help():
+    response = reply("help")
+    assert "Office lookup" in response
+    assert "Greeting" in response
+    assert "Exit" in response
+    assert "help" in response.lower()
+
+
 def test_partial_office_lookup():
     assert "I.101" in reply("where is training")
     assert "I.101" in reply("training")
