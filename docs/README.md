@@ -31,6 +31,11 @@ Create these as the corresponding project work is completed:
 
 These are planned deliverables and are not included in this documentation PR.
 
+## AI task classification
+
+See [AI or not](ai-or-not.md) for ten proposed AI language tasks and ten
+deterministic questions, with current versus planned support clearly marked.
+
 ## Maintenance
 
 Update the root README when installation steps or observable behavior change.
