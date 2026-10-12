@@ -28,6 +28,7 @@ def evaluate(
 
     return correct, total
 
+
 def main() -> None:
     cases_path = Path(__file__).resolve().parent / "cases.csv"
     correct, total = evaluate(cases_path)
@@ -35,6 +36,7 @@ def main() -> None:
     accuracy = correct / total * 100 if total else 0.0
     print(f"Correct: {correct}/{total}")
     print(f"Accuracy: {accuracy:.1f}%")
+
 
 if __name__ == "__main__":
     main()
