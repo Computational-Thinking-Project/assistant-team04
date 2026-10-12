@@ -102,8 +102,7 @@ python -m pytest -q
 python scripts/check_env.py
 ```
 
-The reference smoke suite has four tests: greeting, office lookup, unknown
-question, and empty input. The four baseline smoke tests cover greeting, office lookup, unknown questions,
+The four baseline smoke tests cover greeting, office lookup, unknown questions,
 and empty input. The evaluation tests cover correct, incorrect, and empty case
 sets. Run these checks again after changing the backend or benchmark.
 
