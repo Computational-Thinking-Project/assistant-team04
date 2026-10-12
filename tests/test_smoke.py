@@ -19,4 +19,6 @@ def test_empty():
 def test_help():
     response = reply("help")
     assert "Office lookup" in response
+    assert "Greeting" in response
+    assert "Exit" in response
     assert "help" in response.lower()

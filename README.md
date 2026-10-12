@@ -82,6 +82,11 @@ The reference starter responds:
 
 ```text
 Hello! Ask me where an office is, or when it opens.
+I can help you with:
+- Greeting: Say hello
+- Office lookup: Ask for office location or opening hours
+- Help: Type 'help' to see supported commands
+- Exit: Type 'quit' or 'exit' to leave
 Training Office: room I.101, open Mon-Fri 07:30-16:30.
 ```
 
