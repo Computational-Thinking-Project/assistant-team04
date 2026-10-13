@@ -1,6 +1,6 @@
 # Security & Secret Audit Report
 
-This document records the repository security audit conducted for Lab 02, fulfilling the requirements of **Issue #50** (`Security: review repo for personal data and secrets`).
+This document records the comprehensive repository security audit conducted for Lab 02, fulfilling the acceptance criteria of **Issue #50** (`Security: review repo for personal data and secrets`).
 
 ---
 
@@ -9,49 +9,89 @@ This document records the repository security audit conducted for Lab 02, fulfil
 | Attribute | Details |
 | :--- | :--- |
 | **Auditor** | Truong Thanh Dat (`@Thanhdat3010`) |
-| **Date** | 2026-10-12 |
-| **Checked Revision** | `7610839214c22049d72a83f59de2bff3af3a6ccc` (and current `main` HEAD) |
-| **Scope** | All 82 tracked repository files, complete Git commit history across branches, documentation, sample datasets, and Python bootcamp submissions. |
-| **Objective** | Verify zero committed secrets (API keys, tokens, credentials, private keys) and zero unauthorized private personal data. |
+| **Audit Date** | 2026-10-13 |
+| **Audit Revision / Cutoff** | `61663ee9af617990d77ae563618b3c9821e5429b` (`origin/main`) |
+| **Scope** | All 88 tracked repository files, complete Git commit history across branches (56 commits), sample datasets, documentation, and Python bootcamp submissions. |
+| **Objective** | Verify zero committed credentials (API keys, secret tokens, private keys, passwords) and zero unauthorized private personal data. |
 
 ---
 
 ## 2. Tools and Inspection Methodology
 
-### A. Automated Pattern Scan (Gitleaks / High-Entropy Rules)
-An automated rule-based regex scanner was executed across all tracked files and the entire commit log (`git log -p --all`), checking for standard credential patterns:
-* **OpenAI Secret Keys**: `sk-[a-zA-Z0-9]{20,}`
-* **GitHub Tokens**: `ghp_[a-zA-Z0-9]{36}`, `gho_[a-zA-Z0-9]{36}`
-* **AWS Access Keys**: `AKIA[0-9A-Z]{16}`
-* **GitLab Tokens**: `glpat-[a-zA-Z0-9\-]{20,}`
-* **Generic API Keys & Passwords**: `(?i)(api[_-]?key|password)\s*[:=]\s*["'][^"']+["']`
-* **Private Key Headers**: `-----BEGIN [A-Z]+ PRIVATE KEY-----`
+### A. Dedicated Secret Scanner: Gitleaks
 
-### B. Manual Verification
-* Verified that `.env` is uncommitted and listed in `.gitignore`.
-* Inspected `.env.example` to ensure only dummy placeholders (`changeme`, `sqlite:///dev.db`) exist.
-* Inspected `data/` folder to ensure sample datasets (`offices.csv`, `tasks.csv`) contain no confidential student information.
-* Reviewed `docs/team.md` and `PROGRESS.md` to ensure only standard, syllabus-mandated academic identifiers (student ID, institutional email, GitHub handle) are present.
+The audit executed **Gitleaks** directly against the repository's active workspace and complete git revision history.
+
+* **Tool Version**: `Gitleaks v8.24.0` (windows_x64)
+* **Execution Commands**:
+  ```sh
+  # Scan active workspace and full Git commit history
+  gitleaks detect --source . --verbose --report-format json --report-path docs/gitleaks-report.json
+  ```
+* **Sanitized Execution Output**:
+  ```text
+      ○
+      │╲
+      │ ○
+      ○ ░
+      ░    gitleaks
+
+  INF 56 commits scanned.
+  INF scanned ~115593 bytes (115.59 KB) in 429ms
+  INF no leaks found
+  ```
+* **Scan Result**: Exit code `0`, finding count: `0` (empty JSON result `[]`). Zero credentials or high-entropy tokens detected in history.
 
 ---
 
-## 3. Findings & Audit Results
+### B. Secondary Automated Pattern Scan (Regex Audit)
 
-| Category | Checked Items | Findings | Status |
-| :--- | :--- | :---: | :---: |
-| **API Keys & Tokens** | OpenAI, GitHub, AWS, Generic keys | 0 leaks detected | **PASS** |
+A supplementary regex pattern audit was executed across all 88 tracked files and git diffs, checking for common credential formats and private personal data:
+
+* **OpenAI & Anthropic Secret Keys**: `sk-[a-zA-Z0-9]{20,}`
+* **GitHub Personal Access Tokens**: `gh[pousr]_[A-Za-z0-9_]{16,}`
+* **AWS Access Keys**: `AKIA[0-9A-Z]{16}`
+* **GitLab Tokens**: `glpat-[a-zA-Z0-9\-]{20,}`
+* **Generic API Keys & Secrets**: `(?i)(api[_-]?key|secret|token|password|auth)\s*[:=]\s*["'][^"']+["']`
+* **Private Key Headers**: `-----BEGIN [A-Z ]*PRIVATE KEY-----`
+* **Vietnamese Phone Numbers**: `(?<!\d)(?:0|\+84)(?:3|5|7|8|9)\d{8}(?!\d)`
+* **Vietnamese Citizen ID (CCCD)**: `(?<!\d)\d{12}(?!\d)`
+
+*All detected dummy placeholders (`changeme`, `sqlite:///dev.db`) in `.env.example` were manually inspected and confirmed to be non-sensitive template values.*
+
+---
+
+### C. Manual Repository & Privacy Review
+
+1. **Environment & Ignore Rules**:
+   - Verified that `.env` is uncommitted and properly ignored by `.gitignore`.
+   - Confirmed `.env.example` contains only descriptive comments and safe placeholder values (`changeme`).
+2. **Datasets (`data/` folder)**:
+   - Audited `data/offices.csv` and `data/README.md`: confirmed only publicly available HCMUS campus office locations, rooms, and working hours are listed.
+   - Zero student personal information or confidential university records present.
+3. **Documentation & Roster (`docs/team.md`, `PROGRESS.md`)**:
+   - Confirmed only standard, syllabus-mandated academic identifiers (student full name, student ID, institutional email, GitHub handle) are included.
+   - Zero private phone numbers, home addresses, or citizen identity numbers.
+
+---
+
+## 3. Findings & Audit Summary
+
+| Category | Checked Items / Rules | Finding Summary | Status |
+| :--- | :--- | :--- | :---: |
+| **Gitleaks Scan** | 56 commits, all branches, active tree | 0 secret leaks found | **PASS** |
+| **API Keys & Tokens** | OpenAI, GitHub, AWS, Generic credentials | 0 leaks detected | **PASS** |
 | **Private Keys & Certificates** | RSA, OpenSSH, PGP headers | 0 leaks detected | **PASS** |
-| **Passwords & DB Credentials** | Connection strings, plaintext credentials | 0 leaks detected | **PASS** |
-| **Environment Files** | `.env`, `.env.local`, `.env.production` | Completely untracked; ignored by `.gitignore` | **PASS** |
-| **Private Personal Data** | Phone numbers, personal home addresses, IDs | 0 violations detected | **PASS** |
+| **Passwords & DB URIs** | Plaintext credentials, connection strings | 0 leaks detected | **PASS** |
+| **Environment Files** | `.env`, `.env.local`, `.env.production` | Untracked; protected by `.gitignore` | **PASS** |
+| **Private Personal Data** | Phone numbers, citizen IDs (CCCD), home addresses | 0 violations detected | **PASS** |
 
-**Conclusion:** The repository is clean and compliant with the course security policies. No remediation or key revocation is required.
+**Remediation Required**: None. All checks passed without violations.
 
 ---
 
 ## 4. Ongoing Preventive Measures
 
-To maintain this security posture throughout the semester:
-1. **Local Credentials Only**: Keep real API keys exclusively in local `.env` files.
-2. **Pre-Commit Verification**: Run `git status` before committing to confirm no untracked secrets are staged.
-3. **Emergency Protocol**: If an API key is ever committed, immediately revoke/rotate the key at the provider, remove it from Git history, and inform the Tech Lead per Section 13.2 of the Git Tutorial.
+To maintain repository security across future milestones:
+1. **Pre-Commit Checks**: Developers should run `git status` and `gitleaks protect --staged` locally before committing.
+2. **Secret Incident Procedure**: If any secret is accidentally committed, follow Section 13.2 of the Git Tutorial: immediately revoke and rotate the secret at the provider, remove it from git history, and notify the Tech Lead.
