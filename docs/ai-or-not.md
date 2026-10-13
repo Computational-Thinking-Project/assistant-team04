@@ -6,8 +6,9 @@ Issue: [#46](https://github.com/Computational-Thinking-Project/assistant-team04/
 
 The project helps students locate university offices and their opening hours.
 The current backend in `src/assistant/rules.py` handles known greetings, empty
-input, full-name office matches, and unknown-question fallback. It has no LLM,
-retrieval pipeline, citation output, partial-name matching, or `help` command.
+input, `help`, full-name and unambiguous partial-name office matches, and a
+fixed fallback for ambiguous or unknown questions. It has no LLM, retrieval
+pipeline, or citation output. PRs #53 and #55 added `help` and partial matching.
 
 Here, **needs AI** means a proposed language task that would benefit from an
 LLM rather than enumerating many wording rules. It is a design classification,
@@ -54,13 +55,14 @@ hours string, even when the question asks for just one of those fields.
 | 5 | Where is the Library? | Current | The named office can be located directly in the CSV directory. |
 | 6 | When is IT Helpdesk open? | Current | Full-name matching retrieves the existing hours field. |
 | 7 | An empty or whitespace-only question | Current | Input normalization detects blank text and returns a fixed prompt. |
-| 8 | help | Planned deterministic | A static capability list can be implemented with a command rule, as requested in issue #42. |
-| 9 | Where is training? | Planned deterministic | Explicit aliases or tested partial-name matching can resolve this query, as requested in issue #41. |
+| 8 | help | Current | A command rule returns a fixed capability list, implemented by PR #53 for issue #42. |
+| 9 | Where is training? | Current | Word-based partial matching selects the unique Training Office row, implemented by PR #55 for issue #41. |
 | 10 | Which offices are listed in the directory? | Planned deterministic | Iterating over CSV office names can produce a directory list without generating facts. |
 
 ## Choosing the route
 
-Use rules for known commands and exact data queries. Reserve the proposed AI
+Use rules for known commands, exact data queries, and unambiguous partial
+office names. Ambiguous matches retain the existing fallback. Reserve the proposed AI
 path for an in-scope language task with supplied evidence; otherwise keep the
 existing fallback. Reject unsupported topics rather than routing every
 unmatched message to a model.
@@ -72,9 +74,11 @@ provider cost. Exact office lookup should remain available offline.
 ## Complexity of the deterministic baseline
 
 For CSV size `B`, `N` offices, message length `L`, and maximum office-name
-length `K`, the existing backend uses O(B + NLK) time and O(B + L) space for a
-non-greeting reply that loads its own dataset. Greeting/blank-input handling
-uses O(L) time and space for normalization. Listing an already-loaded
+length `K`, the existing backend uses O(B + L + NK + NLK) time and O(B + L)
+space for a lookup that loads its own dataset, including normalization,
+word tokenization, substring checks, and collecting all matching rows under
+ordinary set hashing. Greeting/`help`/blank-input handling uses O(L) time and
+space for normalization. Listing an already-loaded
 directory would take O(N) time plus the total output length; that feature is
 proposed, not implemented. No LLM inference bound is claimed for the future
 language tasks.

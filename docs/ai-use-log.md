@@ -18,3 +18,8 @@ Codex helped draft `python-bootcamp/README.md`.
 Contributor: Pham Khanh Tam. Tool: Codex.
 
 Codex drafted `docs/ai-or-not.md` and checked its 20 examples against the current backend and planned Lab 02 tasks.
+
+## 2026-10-13 - AI-WFox - Lab 02 issue #46 update
+
+Codex updated the documentation to match the merged `help` and partial-name
+lookup behavior, and checked the examples against the current backend.
