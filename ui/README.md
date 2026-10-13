@@ -9,7 +9,7 @@ Open `ui/index.html` in a web browser. No server or Streamlit installation is ne
 ## Planned backend connection
 
 A future Streamlit page will take the user's question, call the existing Python function, and display the returned answer:
-```bash
+```python
 from assistant.rules import reply
 
 answer = reply(message)
