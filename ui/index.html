@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Campus Assistant - UI Preview</title>
+  <style>
+    body {
+      font-family: system-ui, sans-serif;
+      background: #f4f6fa;
+      color: #18212f;
+    }
+
+    main {
+      max-width: 640px;
+      margin: 48px auto;
+      padding: 24px;
+      background: white;
+      border-radius: 12px;
+    }
+
+    label {
+      display: block;
+      margin: 20px 0 8px;
+    }
+
+    input {
+      width: 70%;
+      padding: 10px;
+    }
+
+    button {
+      padding: 10px;
+    }
+
+    .answer {
+      margin-top: 24px;
+      padding: 16px;
+      background: #eef3fa;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Campus Office Assistant</h1>
+    <p>Static preview - the backend is not connected yet.</p>
+
+    <label for="question">Your question</label>
+    <input
+      id="question"
+      type="text"
+      placeholder="Where is the Training Office?"
+    >
+    <button type="button" disabled>Send</button>
+
+    <section class="answer" aria-label="Answer area">
+      <h2>Answer</h2>
+      <p>The assistant's response will appear here.</p>
+    </section>
+  </main>
+</body>
+</html>
