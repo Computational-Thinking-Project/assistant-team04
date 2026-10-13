@@ -1,5 +1,11 @@
 # AI assistance log
 
+## 2026-10-13 - AI-WFox - Lab 02 issue #45 update
+
+Codex updated the documentation to match the merged `help` and partial-name
+lookup behavior, and checked the examples against the current backend.
+
+
 ## 2026-10-12 - AI-WFox - Lab 02 issue #45
 
 Contributor: Pham Khanh Tam. Tool: Codex.
@@ -19,8 +25,3 @@ Codex added comments/docstrings and supplementary tests.
 ### Team T-W1 documentation
 
 Codex helped draft `python-bootcamp/README.md`.
-
-## 2026-10-13 - AI-WFox - Lab 02 issue #45 update
-
-Codex updated the documentation to match the merged `help` and partial-name
-lookup behavior, and checked the examples against the current backend.
