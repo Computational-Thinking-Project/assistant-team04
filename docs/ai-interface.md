@@ -25,14 +25,17 @@ def reply(
     ...
 ```
 
-It normalizes case and whitespace, handles empty input and known greetings,
-then finds the first full office name occurring in the message. If `offices`
-is omitted, it loads `data/offices.csv`. Each office row contains `name`, `room`,
-and `hours`. Unknown questions receive a fixed fallback string.
+It normalizes case and whitespace, handles empty input, known greetings,
+and the `help` command, then loads the office directory if `offices` is
+omitted. Each row contains `name`, `room`, and `hours`. Office matching accepts
+a full name or a shared word other than `office`; an answer is returned only
+when exactly one office matches. Ambiguous and unknown questions receive the
+fixed fallback string. For example, `where is training` finds Training Office,
+while `where is training and library` returns the fallback.
 
-Partial-name lookup and a `help` command are separate pending issues. The
-backend currently returns text only; it provides no citation metadata or
-structured indication that a question matched. CSV loading can raise errors.
+Partial-name lookup and `help` were merged in PRs #55 and #53. The backend
+currently returns text only; it provides no citation metadata or structured
+indication that a question matched. CSV loading can raise errors.
 
 ## Proposed application boundary
 
@@ -107,8 +110,9 @@ as a successful AI answer.
 
 1. Validate inputs and configuration. Blank input returns the existing
    `reply` message with `mode="invalid"` and `error="invalid_input"`.
-2. Use deterministic handling for known greetings and supported full-name
-   office lookups. Preserve the existing answer text.
+2. Use deterministic handling for known greetings, `help`, and supported
+   full-name or unambiguous partial-name office lookups. Preserve the existing
+   answer text and ambiguous-match fallback.
 3. For an in-scope language task, use AI only when a provider and suitable
    public evidence are both available. Out-of-scope questions remain on the
    rule-based fallback path even when a provider is configured.
@@ -140,7 +144,7 @@ inventing office information.
 | Backend/CSV fails and no safe rule response is available | `fallback` / `backend_unavailable` | Return `Office information is temporarily unavailable. Please try again later.` |
 
 Use stable error codes for logs and UI handling. Do not include tokens, full
-user messages, or source excerpts in routine logs. Known greetings and empty
+user messages, or source excerpts in routine logs. Known greetings, `help`, and empty
 input currently do not require loading the CSV; keep that behavior.
 
 ## Response examples
@@ -160,7 +164,7 @@ Input: `Where is the Training Office?`
 
 Provider timeout during an in-scope summarization task with supplied context:
 
-Input: `Summarize the supplied student support guide in two sentences.`
+Input: `Summarize the supplied procedure in two sentences.`
 
 ```json
 {
@@ -183,8 +187,11 @@ providers; tests must not require network access or credentials.
 
 For the current backend, let `B` be CSV size, `N` the office count, `L` the
 normalized message length, and `K` the longest office name. Loading costs
-O(B) time and space; a conservative substring-search bound is O(NLK) time.
-A reply that loads data therefore costs O(B + NLK) time and O(B + L) space.
+O(B) time and space. Normalization/query tokenization costs O(L), office
+tokenization costs O(NK), and a conservative substring-search bound is O(NLK).
+Including all matches, a reply that loads data costs O(B + L + NK + NLK) time
+and O(B + L) space under ordinary set hashing. Greeting, `help`, and blank-input
+handling costs O(L) time and space for normalization, without CSV access.
 
 For the proposed adapter, validation costs O(L + C), where `C` is total
 context size. Source indexing uses O(S) extra space for `S` source records;
