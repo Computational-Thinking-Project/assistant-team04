@@ -1,3 +1,5 @@
+from pathlib import Path
+
 from assistant.rules import reply
 
 
@@ -18,6 +20,15 @@ def test_empty():
     assert reply("   ") == "Please type a question."
 
 
+def test_env_example_placeholders():
+    env_path = Path(".env.example")
+    assert env_path.exists(), ".env.example must exist in repository root"
+    content = env_path.read_text(encoding="utf-8")
+    assert "LLM_API_KEY=changeme" in content
+    assert "LLM_PROVIDER=" in content
+    assert "DB_URL=" in content
+
+
 def test_help():
     response = reply("help")
     assert "Office lookup" in response
@@ -33,3 +44,4 @@ def test_partial_office_lookup():
 
 def test_ambiguous_office_lookup():
     assert "don't know" in reply("where is training and library")
+

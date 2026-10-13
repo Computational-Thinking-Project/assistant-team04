@@ -14,3 +14,12 @@
 - Review requested PRs within 24 hours.
 - Record AI use in the PR and in docs/ai-use-log.md.
 - Pair work: add Co-authored-by trailers.
+
+## Secrets & Configuration
+- **Local Credentials**: Real API keys, tokens, and credentials belong **only** in a local `.env` file (`cp .env.example .env`).
+- **Never Commit Secrets**: Never commit `.env`, private keys, passwords, database credentials, or real personal/student data to Git.
+- **Gitignore Protection**: `.env` and `.env.*` are ignored by `.gitignore` (with `!.env.example` kept tracked as a template). Always verify with `git status` that `.env` is never staged.
+- **Placeholders in Examples**: `.env.example` must contain only safe dummy values (e.g., `changeme`, `sqlite:///dev.db`).
+- **Accidental Leak Protocol**: If a secret is accidentally committed and pushed:
+  1. Immediately revoke and rotate the secret with the provider.
+  2. Remove the secret from code history and notify the Tech Lead and team immediately (see Git Tutorial Chapter 13).
