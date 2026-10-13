@@ -28,3 +28,4 @@ def test_empty_case_set(tmp_path: Path) -> None:
     cases.write_text("question,expected,category\n", encoding="utf-8")
 
     assert evaluate(cases, answer=lambda _: "unused") == (0, 0)
+    
