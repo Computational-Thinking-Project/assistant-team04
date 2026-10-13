@@ -8,6 +8,7 @@ merged implementation.
 
 | Document | Purpose |
 |:---|:---|
+| [Future AI service interface](ai-interface.md) | Proposed signatures, response records, errors, and rule-based fallback |
 | [Project README](../README.md) | Scope, skeleton status, setup, CLI examples, checks, and contribution workflow |
 | [Team roster and assignments](team.md) | Confirmed identities, task plan, branches, and file ownership |
 
@@ -30,6 +31,11 @@ Create these as the corresponding project work is completed:
   links to relevant PRs.
 
 These are planned deliverables and are not included in this documentation PR.
+
+## AI task classification
+
+See [AI or not](ai-or-not.md) for ten proposed AI language tasks and ten
+deterministic questions, with current versus planned support clearly marked.
 
 ## Maintenance
 

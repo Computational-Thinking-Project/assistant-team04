@@ -1,0 +1,16 @@
+question,expected,category
+Where is the Training Office?,"Training Office: room I.101, open Mon-Fri 07:30-16:30.",normal
+When does the Student Affairs open?,"Student Affairs: room I.102, open Mon-Fri 08:00-16:00.",normal
+Where is the Library?,"Library: room B.201, open Mon-Sat 07:00-20:00.",normal
+How to contact IT Helpdesk?,"IT Helpdesk: room E.005, open Mon-Fri 08:00-17:00.",normal
+Where is the Data Center?,"Data Center: room  I.110, open  Mon-Sun 00:00-23:59.",normal
+hello,"Hello! Ask me where an office is, or when it opens.",normal
+xin chao,"Hello! Ask me where an office is, or when it opens.",normal
+"   ",Please type a question.,edge
+???,Please type a question.,edge
+HI?!,"Hello! Ask me where an office is, or when it opens.",edge
+WHERE IS THE TRAINING OFFICE???,"Training Office: room I.101, open Mon-Fri 07:30-16:30.",edge
+What is the weather today?,"I don't know that yet. Try asking about an office, e.g. 'training office'.",out-of-scope
+How much is the tuition fee?,"I don't know that yet. Try asking about an office, e.g. 'training office'.",out-of-scope
+Who is the president of the university?,"I don't know that yet. Try asking about an office, e.g. 'training office'.",out-of-scope
+Can you write a Python script for me?,"I don't know that yet. Try asking about an office, e.g. 'training office'.",out-of-scope

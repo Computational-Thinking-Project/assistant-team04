@@ -74,6 +74,7 @@ Ask a single question:
 
 ```sh
 python -m assistant "hi"
+python -m assistant "help"
 python -m assistant "Where is the Training Office?"
 ```
 
@@ -81,6 +82,11 @@ The reference starter responds:
 
 ```text
 Hello! Ask me where an office is, or when it opens.
+I can help you with:
+- Greeting: Say hello
+- Office lookup: Ask for office location or opening hours
+- Help: Type 'help' to see supported commands
+- Exit: Type 'quit' or 'exit' to leave
 Training Office: room I.101, open Mon-Fri 07:30-16:30.
 ```
 
@@ -102,9 +108,9 @@ python -m pytest -q
 python scripts/check_env.py
 ```
 
-The reference smoke suite has four tests: greeting, office lookup, unknown
-question, and empty input. A successful run reports `4 passed`.
-Run these checks again on the assembled team repository.
+The four baseline smoke tests cover greeting, office lookup, unknown questions,
+and empty input. The evaluation tests cover correct, incorrect, and empty case
+sets. Run these checks again after changing the backend or benchmark.
 
 The environment checker verifies Python, the virtual environment, pytest, Git,
 repository metadata, `.gitignore`, README completeness, Git email, and a greeting
@@ -147,6 +153,24 @@ assistant-team04/
     |-- README.md            # Documentation index
     `-- team.md              # Roster and task ownership
 ```
+
+## Benchmark evaluation
+
+Once `eval/cases.csv` is available, run the benchmark from the repository root
+after completing the setup above:
+
+```sh
+python eval/run.py
+```
+
+The CSV has `question`, `expected`, and `category` columns. For each question,
+the runner compares the backend's full reply with `expected` after trimming
+leading and trailing whitespace and ignoring letter case. Internal whitespace
+and punctuation must still match. The `category` column describes the case but
+does not affect scoring.
+
+The runner prints the number of correct cases, the total number of cases, and
+the accuracy percentage. An empty case set reports `0/0` and `0.0%`.
 
 ## Baseline behavior and limitations
 
